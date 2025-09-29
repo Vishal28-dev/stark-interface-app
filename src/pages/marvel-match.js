@@ -1,8 +1,10 @@
+// File: src/pages/marvel-match.js
+
 import { useState, useEffect } from 'react';
 import Head from 'next/head';
 import Link from 'next/link';
-// CORRECTED THE IMPORT PATH HERE
-import Card from '@/components/Card';
+// THE ONLY CHANGE IS ON THIS LINE
+import Card from '../components/Card';
 import styles from '@/styles/MarvelMatch.module.css';
 
 const initialCards = [
