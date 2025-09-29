@@ -1,13 +1,10 @@
-// File: src/pages/marvel-match.js
-
 import { useState, useEffect } from 'react';
 import Head from 'next/head';
 import Link from 'next/link';
-// FIX #1: Corrected the import path for the Card component
+// CORRECTED THE IMPORT PATH HERE
 import Card from '@/components/Card';
 import styles from '@/styles/MarvelMatch.module.css';
 
-// FIX #2: Corrected all image src paths
 const initialCards = [
   { id: 1, name: 'Iron Man', src: '/cards/ironman.jpg' },
   { id: 2, name: 'Captain America', src: '/cards/captainamerica.jpg' },
