@@ -1,0 +1,240 @@
+/* File: src/styles/MarvelQuiz.module.css */
+
+.quizPage {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  font-family: var(--font-rajdhani), sans-serif;
+  color: #c7d8e8;
+  background-image: url('/ironman-quiz-bg.jpg');
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+}
+
+/* --- Redesigned "Floating Frame" Quiz Container --- */
+.quizContainer {
+  width: 100%;
+  max-width: 800px;
+  background: transparent;
+  border: 1px solid rgba(0, 217, 255, 0.2); /* Faint outer border */
+  padding: 40px 50px;
+  position: relative; /* Crucial for positioning the corner brackets */
+  animation: containerFadeIn 0.7s ease-out;
+}
+
+/* This ::before pseudo-element creates the Top-Left bracket */
+.quizContainer::before {
+  content: '';
+  position: absolute;
+  width: 30px;
+  height: 30px;
+  top: -2px;
+  left: -2px;
+  border-top: 3px solid #00d9ff;
+  border-left: 3px solid #00d9ff;
+  animation: drawBrackets 0.5s ease-out 0.3s backwards;
+}
+
+/* This ::after pseudo-element creates the Bottom-Right bracket */
+.quizContainer::after {
+  content: '';
+  position: absolute;
+  width: 30px;
+  height: 30px;
+  bottom: -2px;
+  right: -2px;
+  border-bottom: 3px solid #00d9ff;
+  border-right: 3px solid #00d9ff;
+  animation: drawBrackets 0.5s ease-out 0.3s backwards;
+}
+
+@keyframes containerFadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes drawBrackets {
+    from { width: 0; height: 0; }
+    to { width: 30px; height: 30px; }
+}
+
+.questionHeader {
+  margin-bottom: 30px;
+  text-align: center;
+}
+
+.questionCount {
+  font-size: 1.1rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  color: #00d9ff;
+  margin-bottom: 15px;
+  opacity: 0.8;
+}
+
+.questionText {
+  font-size: 2rem;
+  font-weight: 700;
+  color: #fff;
+  line-height: 1.4;
+  text-shadow: 0 0 10px rgba(0, 217, 255, 0.5);
+}
+
+.optionsContainer {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 15px;
+  margin-bottom: 40px;
+}
+
+.optionButton {
+  background: rgba(0, 40, 70, 0.5);
+  border: 1px solid rgba(0, 217, 255, 0.2);
+  color: #c7d8e8;
+  padding: 15px 20px;
+  font-family: var(--font-rajdhani), sans-serif;
+  font-size: 1.3rem;
+  font-weight: 700;
+  cursor: pointer;
+  text-align: left;
+  transition: all 0.2s ease-out;
+  position: relative;
+}
+
+.optionButton::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 0%;
+  height: 100%;
+  background: rgba(0, 217, 255, 0.2);
+  transition: width 0.3s ease-out;
+}
+
+.optionButton:hover::after, .optionButton.selected::after {
+  width: 100%;
+}
+
+.optionButton:disabled {
+  cursor: not-allowed;
+  opacity: 0.7;
+}
+
+.optionButton.correct {
+  border-color: #00ff88;
+  color: #fff;
+}
+.optionButton.correct::after {
+  background: rgba(0, 255, 136, 0.3);
+  width: 100%;
+}
+
+.optionButton.incorrect {
+  border-color: #ff3b3b;
+  color: #fff;
+}
+.optionButton.incorrect::after {
+  background: rgba(255, 59, 59, 0.3);
+  width: 100%;
+}
+
+.navigation {
+  text-align: center;
+  min-height: 50px;
+}
+
+.actionButton {
+  background: transparent;
+  border: 1px solid #00d9ff;
+  color: #00d9ff;
+  padding: 12px 30px;
+  font-family: var(--font-rajdhani), sans-serif;
+  text-transform: uppercase;
+  font-size: 1rem;
+  font-weight: 700;
+  letter-spacing: 1px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-decoration: none;
+}
+
+.actionButton:hover:not(:disabled) {
+  background: #00d9ff;
+  color: #0a1c30;
+  box-shadow: 0 0 20px #00d9ff;
+  transform: translateY(-2px);
+}
+
+.actionButton:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  border-color: rgba(0, 217, 255, 0.5);
+  color: rgba(0, 217, 255, 0.5);
+}
+
+.nextButton {
+  border-color: #00ff88;
+  color: #00ff88;
+  animation: pulseSuccess 1.5s infinite;
+}
+.nextButton:hover {
+  background: #00ff88;
+  color: #0a1c30;
+  box-shadow: 0 0 20px #00ff88;
+}
+
+.retryButton {
+    border-color: #ff3b3b;
+    color: #ff3b3b;
+    animation: pulseError 1.5s infinite;
+}
+.retryButton:hover {
+  background: #ff3b3b;
+  color: #fff;
+  box-shadow: 0 0 20px #ff3b3b;
+}
+
+@keyframes pulseSuccess {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+  100% { transform: scale(1); }
+}
+
+@keyframes pulseError {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.02); }
+  100% { transform: scale(1); }
+}
+
+.resultsContainer {
+  text-align: center;
+  animation: containerEnter 0.7s ease-out;
+}
+.title {
+  font-size: 2.5rem;
+  margin-bottom: 20px;
+}
+.stats {
+  margin-bottom: 40px;
+  font-size: 1.5rem;
+  line-height: 2;
+}
+.stats span {
+  color: #fff;
+  font-weight: 700;
+}
+.resultsControls {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+@keyframes containerEnter {
+  from { opacity: 0; transform: scale(0.95); }
+  to { opacity: 1; transform: scale(1); }
+}

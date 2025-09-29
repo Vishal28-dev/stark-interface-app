@@ -1,0 +1,157 @@
+.pageContainer {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  color: #a3e6ff;
+  font-family: 'Orbitron', sans-serif;
+  position: relative; 
+}
+
+/* --- Full-Height Vertical Lines --- */
+.verticalLine {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 1px;
+  background-color: rgba(0, 217, 255, 0.2);
+  z-index: 1;
+}
+
+.lineOne {
+  left: 33.333%;
+}
+
+.lineTwo {
+  left: 66.666%;
+}
+
+/* --- Top Navigation Bar --- */
+.topBar {
+  display: flex;
+  /* CHANGE: Removed justify-content to use flexbox for spacing */
+  align-items: center;
+  padding: 20px 40px;
+  width: 100%;
+  box-sizing: border-box;
+  position: relative; 
+  z-index: 2;
+  gap: 20px; /* Adds space between the nav boxes */
+}
+
+.topBar a {
+  /* CHANGE: flex: 1 makes each box take up equal space */
+  flex: 1;
+  text-decoration: none;
+  color: #a3e6ff;
+  text-transform: uppercase;
+  font-size: 0.9rem;
+  letter-spacing: 2px;
+  transition: all 0.3s ease;
+  padding: 10px 25px;
+  border: 1px solid rgba(0, 217, 255, 0.4);
+  border-radius: 4px;
+  /* CHANGE: Centered the text inside each box */
+  text-align: center;
+}
+
+.topBar a:hover {
+  color: #ffffff;
+  background: rgba(0, 217, 255, 0.1);
+  border-color: #00d9ff;
+  box-shadow: 0 0 15px rgba(0, 217, 255, 0.5);
+}
+
+/* --- Central Floating Text Container --- */
+.hudContainer {
+  flex-grow: 1;
+  display: flex;
+  align-items: center;
+  width: 100%;
+  box-sizing: border-box;
+  position: relative; 
+  z-index: 2;
+}
+
+/* --- Central Floating Links --- */
+.hudLink {
+  
+  flex: 1;
+  color: #a3e6ff;
+  opacity: 0.8;
+  text-decoration: none;
+  font-size: 1.6rem;
+  font-weight: 400;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  transition: all 0.3s ease;
+  height: 20vh;
+  line-height: 20vh;
+  /* CHANGE: Removed position: relative. This fixes the scanner. */
+  /* The scanner is now positioned relative to the whole page. */
+}
+
+.hudLink:hover {
+  opacity: 1;
+  color: #ffffff;
+  text-shadow: 0 0 15px #00d9ff;
+}
+
+/* --- Symmetrical Text Alignment (for central text only) --- */
+.hudLink:nth-of-type(1) {
+  align-items: center;
+  padding-left: 100px;
+}
+
+.hudLink:nth-of-type(2) {
+  text-align: center;
+}
+
+.hudLink:nth-of-type(3) {
+  text-align: right;
+  padding-right: 100px;
+}
+
+/* --- Scanning Animation --- */
+.scanner {
+  position:absolute;
+  height: 5px;
+  background: linear-gradient(to right, transparent, #00d9ff, transparent);
+  box-shadow: 0 0 10px #00d9ff;
+  opacity: 0;
+}
+
+.hudLink:nth-of-type(1) .scanner {
+  left: 0;
+  width: 33.333%;
+}
+.hudLink:nth-of-type(2) .scanner {
+  left: 33.333%;
+  width: 33.333%;
+}
+.hudLink:nth-of-type(3) .scanner {
+  left: 66.666%;
+  width: 33.333%;
+}
+
+.hudLink:hover .scanner {
+  animation: scanPage 3s linear forwards;
+}
+
+@keyframes scanPage {
+  0% {
+    top: 75px;
+    opacity: 0;
+  }
+  10% {
+    top: 75px;
+    opacity: 1;
+  }
+  90% {
+    top: 100%;
+    opacity: 1;
+  }
+  100% {
+    top: 100%;
+    opacity: 0;
+  }
+}
